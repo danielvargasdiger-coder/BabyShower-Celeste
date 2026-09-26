@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Shower de Celeste</title>
+<meta name="description" content="Te invitamos al Baby Shower de Celeste · 15 de noviembre de 2026 · Pereira">
+<meta property="og:title" content="Baby Shower de Celeste 🎀">
+<meta property="og:description" content="15 de noviembre de 2026 · Salón Social Conjunto Ceiba Grande. ¡Confirma tu asistencia!">
+<meta property="og:image" content="img/portada.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#f8e3e8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎀</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#fdfaf3;
+    --blush:#f8e3e8;
+    --blush-2:#f3d0da;
+    --rose:#e6a3b6;
+    --rose-deep:#c47590;
+    --rose-ink:#9a5a70;
+    --gold:#d8b27a;
+    --sage:#aebfa3;
+    --text:#7b5563;
+    --muted:#a78893;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Quicksand',system-ui,sans-serif;color:var(--text);
+    background:var(--paper);overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  }
+  body.locked{overflow:hidden;height:100vh}
+  img{display:block;max-width:100%}
+  .blend{mix-blend-mode:multiply}
+
+  /* ============ SOBRE DE ENTRADA ============ */
+  #intro{
+    position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;
+    background:radial-gradient(ellipse 70% 45% at 50% 50%,#f8e1e7 0%,#fbeef0 55%,#fdfaf3 100%);
+    transition:opacity 1s ease, visibility 1s;
+    padding:20px;text-align:center;
+  }
+  #intro.gone{opacity:0;visibility:hidden}
+  #intro .corner{position:absolute;width:min(62vw,300px);opacity:.95}
+  #intro .corner.tl{top:-10px;left:-10px}
+  #intro .corner.br{bottom:-10px;right:-10px;transform:rotate(180deg)}
+  .intro-top{font-family:'Cormorant Garamond',serif;letter-spacing:.35em;text-transform:uppercase;font-size:.8rem;color:var(--rose-deep);position:relative}
+  .intro-top b{display:block;font-family:'Great Vibes',cursive;font-weight:400;letter-spacing:0;text-transform:none;font-size:2.4rem;color:var(--rose-ink);margin-top:6px}
+
+  .envelope{position:relative;width:min(84vw,330px);aspect-ratio:3/2;perspective:900px;cursor:pointer}
+  .env-back{position:absolute;inset:0;background:#efbfcc;border-radius:10px;box-shadow:0 22px 40px -18px rgba(154,90,112,.55)}
+  .letter{
+    position:absolute;left:7%;right:7%;top:8%;height:84%;background:#fffdf9;border-radius:6px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);transition:transform 1s cubic-bezier(.3,.8,.3,1) .55s;z-index:1
+  }
+  .letter small{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+  .letter span{font-family:'Great Vibes',cursive;font-size:2.6rem;color:var(--rose-deep);line-height:1.1}
+  .env-front{position:absolute;inset:0;z-index:2;border-radius:10px;overflow:hidden}
+  .env-front::before{content:"";position:absolute;inset:0;background:#f5ccd7;clip-path:polygon(0 0,50% 58%,100% 0,100% 100%,0 100%)}
+  .env-front::after{content:"";position:absolute;inset:0;background:#f1c2cf;clip-path:polygon(0 100%,50% 50%,100% 100%)}
+  .flap{
+    position:absolute;left:0;right:0;top:0;height:62%;z-index:3;transform-origin:top center;
+    transition:transform .7s ease, z-index 0s .35s;
+  }
+  .flap::before{content:"";position:absolute;inset:0;background:#e9adbe;clip-path:polygon(0 0,100% 0,50% 100%);border-radius:10px 10px 0 0}
+  .seal{
+    position:absolute;left:50%;top:62%;transform:translate(-50%,-50%);z-index:4;width:66px;height:66px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,#dc93a9,#b8627e 70%);display:grid;place-items:center;
+    box-shadow:0 4px 10px rgba(120,50,75,.35), inset 0 0 0 5px rgba(255,255,255,.15);
+    font-family:'Great Vibes',cursive;font-size:2.2rem;color:#fbe7ec;transition:transform .4s ease, opacity .4s ease;
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  .seal::after{content:"";position:absolute;inset:6px;border-radius:50%;border:1px dashed rgba(255,235,240,.6)}
+  @keyframes pulse{0%,100%{box-shadow:0 4px 10px rgba(120,50,75,.35),0 0 0 0 rgba(196,117,144,.45)}50%{box-shadow:0 4px 10px rgba(120,50,75,.35),0 0 0 14px rgba(196,117,144,0)}}
+  .envelope.open .seal{transform:translate(-50%,-50%) scale(.2);opacity:0;animation:none}
+  .envelope.open .flap{transform:rotateX(180deg);z-index:0}
+  .envelope.open .letter{transform:translateY(-48%)}
+  .tap{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--rose-deep);font-size:1.1rem;position:relative}
+  .tap::after{content:"";display:block;width:40px;height:1px;background:var(--rose);margin:8px auto 0}
+
+  /* ============ PÉTALOS ============ */
+  .petals{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden}
+  .petal{position:absolute;top:-30px;width:12px;height:14px;border-radius:150% 0 150% 0;opacity:.75;animation:fall linear infinite}
+  @keyframes fall{
+    0%{transform:translate(0,-20px) rotate(0)}
+    50%{transform:translate(40px,50vh) rotate(180deg)}
+    100%{transform:translate(-20px,105vh) rotate(360deg)}
+  }
+
+  /* ============ FONDO ============ */
+  .bg{position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(circle at 50% 30%,rgba(247,205,216,.35),transparent 45%),
+      radial-gradient(circle at 100% 50%,rgba(230,212,239,.4),transparent 35%),
+      radial-gradient(circle at 85% 70%,rgba(249,220,207,.45),transparent 38%),
+      radial-gradient(circle at 5% 80%,rgba(245,201,214,.45),transparent 40%),
+      var(--paper);
+  }
+  main{position:relative;max-width:560px;margin:0 auto;padding:0 18px}
+
+  /* ============ HERO ============ */
+  .hero{position:relative;text-align:center;padding:78px 0 40px;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .hero .corner{position:absolute;width:min(46vw,230px);top:-12px;pointer-events:none}
+  .hero .corner.l{left:-40px}
+  .hero .corner.r{right:-40px;transform:scaleX(-1)}
+  .eyebrow{font-family:'Cormorant Garamond',serif;font-size:.85rem;letter-spacing:.42em;text-transform:uppercase;color:var(--rose-deep);position:relative;z-index:1}
+  .title-bs{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(2.3rem,10vw,3.2rem);letter-spacing:.18em;text-transform:uppercase;color:var(--rose-ink);line-height:1.05;margin-top:10px;position:relative;z-index:1}
+  .de{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);font-size:1.2rem;margin:2px 0 -10px;position:relative;z-index:1}
+  .name{font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(5rem,26vw,8rem);color:var(--rose-deep);line-height:1.05;position:relative;z-index:1;
+    text-shadow:0 2px 0 rgba(255,255,255,.7)}
+
+  .arch{
+    position:relative;width:min(82vw,360px);margin:18px auto 0;padding:14px;
+    border-radius:999px 999px 26px 26px;background:rgba(255,255,255,.55);
+    border:1px solid rgba(230,163,182,.55);
+  }
+  .arch::before{content:"";position:absolute;inset:-9px;border-radius:999px 999px 32px 32px;border:1px solid rgba(216,178,122,.45)}
+  .arch-in{border-radius:999px 999px 18px 18px;overflow:hidden;background:#fdfaf3}
+  .arch-in img{width:100%;height:auto;transform:scale(1.08)}
+  .arch-fallback{aspect-ratio:1/1;display:grid;place-items:center}
+  .tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;color:var(--text);max-width:330px;line-height:1.5;margin:26px auto 0}
+
+  .date-line{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:24px;font-family:'Cormorant Garamond',serif;color:var(--rose-ink)}
+  .date-line .big{font-size:3.6rem;font-weight:500;line-height:1;padding:0 6px}
+  .date-line .side{font-size:.9rem;letter-spacing:.3em;text-transform:uppercase;padding:7px 0;border-top:1px solid var(--rose);border-bottom:1px solid var(--rose);min-width:96px}
+  .date-line .mid{display:flex;flex-direction:column;align-items:center}
+  .date-line .mid small{font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+
+  /* ============ ORNAMENTO ============ */
+  .orn{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px auto 18px;color:var(--rose)}
+  .orn i{display:block;width:54px;height:1px;background:linear-gradient(90deg,transparent,var(--rose))}
+  .orn i:last-child{background:linear-gradient(90deg,var(--rose),transparent)}
+  .orn svg{width:18px;height:18px;fill:var(--rose)}
+
+  /* ============ FRASE ============ */
+  .quote{text-align:center;padding:40px 12px 20px}
+  .quote p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.45rem;line-height:1.55;color:var(--rose-ink)}
+  .quote small{display:block;margin-top:14px;font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+
+  /* ============ TARJETAS ============ */
+  section.card{
+    position:relative;background:#fefcf8;
+    border:1px solid rgba(230,163,182,.4);border-radius:30px;
+    padding:44px 22px 32px;margin:26px 0;text-align:center;overflow:hidden;
+    box-shadow:0 18px 40px -28px rgba(154,90,112,.55);
+  }
+  section.card::before{content:"";position:absolute;inset:8px;border:1px solid rgba(216,178,122,.3);border-radius:24px;pointer-events:none}
+  .card .flor{position:absolute;width:118px;top:-14px;left:-18px;opacity:.95;pointer-events:none}
+  .card .flor.r{left:auto;right:-18px;transform:scaleX(-1)}
+  .card h2{font-family:'Great Vibes',cursive;font-weight:400;font-size:2.7rem;color:var(--rose-deep);line-height:1.1;position:relative}
+  .card .kicker{font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;position:relative}
+  .card p.lead{font-family:'Cormorant Garamond',serif;font-size:1.18rem;color:var(--text);line-height:1.55;margin:0 auto 24px;max-width:400px;position:relative}
+
+  /* ============ CONTADOR ============ */
+  .count{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;position:relative}
+  .unit{position:relative;aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .unit svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+  .unit svg circle{fill:none;stroke-width:2.2}
+  .unit .trk{stroke:var(--blush-2)}
+  .unit .bar{stroke:var(--rose-deep);stroke-linecap:round;transition:stroke-dashoffset .6s ease}
+  .unit b{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(1.6rem,7.5vw,2.3rem);color:var(--rose-ink);line-height:1;font-variant-numeric:tabular-nums;position:relative}
+  .unit small{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:3px;position:relative}
+  .count-done{font-family:'Great Vibes',cursive;font-size:2.4rem;color:var(--rose-deep)}
+
+  /* ============ DETALLES ============ */
+  .details{display:grid;gap:12px;margin-bottom:24px;position:relative}
+  .detail{display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 10px;border-bottom:1px dashed rgba(230,163,182,.6)}
+  .detail:last-child{border-bottom:0}
+  .detail .ic{width:46px;height:46px;border-radius:50%;background:var(--blush);display:grid;place-items:center;border:1px solid rgba(230,163,182,.6)}
+  .detail .ic svg{width:21px;height:21px;stroke:var(--rose-deep);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .detail .k{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+  .detail .v{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--rose-ink);font-weight:500;line-height:1.25}
+
+  /* ============ BOTONES ============ */
+  .btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;position:relative}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-family:'Quicksand',sans-serif;font-weight:600;font-size:.92rem;letter-spacing:.06em;
+    padding:14px 24px;border-radius:999px;border:0;cursor:pointer;text-decoration:none;
+    background:linear-gradient(135deg,#e39ab0,#c46f8b);color:#fff;
+    box-shadow:0 10px 20px -10px rgba(180,95,125,.85);
+    transition:transform .2s ease, box-shadow .2s ease;min-height:48px;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 24px -10px rgba(180,95,125,.9)}
+  .btn.ghost{background:#fff;color:var(--rose-deep);border:1.5px solid var(--rose);box-shadow:none}
+  .btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .btn.full{width:100%}
+
+  /* ============ REGALOS ============ */
+  .gift{width:86px;margin:4px auto 6px;position:relative}
+
+  /* ============ FORMULARIO ============ */
+  form{display:grid;gap:14px;text-align:left;position:relative}
+  form label.t{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;padding-left:6px}
+  input[type=text],select,textarea{
+    width:100%;font-family:'Quicksand',sans-serif;font-size:1rem;color:var(--text);
+    background:#fff;border:1.5px solid var(--blush-2);border-radius:16px;
+    padding:13px 16px;outline:none;transition:border-color .2s, box-shadow .2s;
+  }
+  textarea{resize:vertical;min-height:88px}
+  input:focus,select:focus,textarea:focus{border-color:var(--rose);box-shadow:0 0 0 4px rgba(230,163,182,.22)}
+  .choice{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .choice input{position:absolute;opacity:0;pointer-events:none}
+  .choice label{
+    padding:14px 8px;text-align:center;border-radius:16px;cursor:pointer;background:#fff;border:1.5px solid var(--blush-2);
+    font-size:.93rem;color:var(--text);font-weight:500;transition:all .2s;
+  }
+  .choice input:checked + label{background:var(--blush);border-color:var(--rose);color:var(--rose-ink);font-weight:600}
+  .choice input:focus-visible + label{box-shadow:0 0 0 4px rgba(230,163,182,.3)}
+  .hidden{display:none}
+  .err{color:#bf4d6d;font-size:.85rem;padding-left:6px;min-height:1em}
+
+  /* ============ PIE ============ */
+  footer{position:relative;text-align:center;margin-top:30px}
+  footer .msg{padding:10px 18px 0}
+  footer .script{font-family:'Great Vibes',cursive;font-size:2.4rem;color:var(--rose-deep);line-height:1}
+  footer .names{font-family:'Cormorant Garamond',serif;font-size:1.35rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rose-ink);margin-top:6px}
+  footer .due{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);margin-top:6px}
+  footer .meadow{width:100%;max-width:900px;margin:-50px auto 0;height:auto}
+
+  /* ============ APARICIÓN ============ */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity 1s ease, transform 1s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .petals{display:none}
+    .seal{animation:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* desvanecer bordes de las acuarelas */
+  .corner,.card .flor{-webkit-mask-image:radial-gradient(circle at 0 0,#000 45%,transparent 72%);mask-image:radial-gradient(circle at 0 0,#000 45%,transparent 72%)}
+  footer .meadow{-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 35%);mask-image:linear-gradient(to bottom,transparent 0%,#000 35%)}
+  .arch-in img{-webkit-mask-image:radial-gradient(ellipse 62% 62% at 50% 52%,#000 70%,transparent 100%);mask-image:radial-gradient(ellipse 62% 62% at 50% 52%,#000 70%,transparent 100%)}
+</style>
+</head>
+<body class="locked">
+
+<!-- ====== SOBRE DE ENTRADA ====== -->
+<div id="intro" role="dialog" aria-label="Invitación">
+  <img class="corner tl blend" src="img/ramo.jpg" alt="" onerror="this.remove()">
+  <img class="corner br blend" src="img/ramo.jpg" alt="" onerror="this.remove()">
+  <div class="intro-top">Tienes una invitación especial<b>para ti</b></div>
+  <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Abrir invitación">
+    <div class="env-back"></div>
+    <div class="letter"><small>Baby Shower</small><span>Celeste</span></div>
+    <div class="env-front"></div>
+    <div class="flap"></div>
+    <div class="seal">C</div>
+  </div>
+  <div class="tap">Toca el sello para abrir</div>
+</div>
+
+<div class="bg" aria-hidden="true"></div>
+<div class="petals" id="petals" aria-hidden="true"></div>
+
+<main>
+  <!-- ====== PORTADA ====== -->
+  <header class="hero">
+    <img class="corner l blend" src="img/ramo.jpg" alt="" onerror="this.remove()">
+    <img class="corner r blend" src="img/ramo.jpg" alt="" onerror="this.remove()">
+
+    <div class="eyebrow reveal">Te invitamos a celebrar</div>
+    <div class="title-bs reveal">Baby Shower</div>
+    <div class="de reveal">de</div>
+    <h1 class="name reveal">Celeste</h1>
+
+    <div class="arch reveal">
+      <div class="arch-in">
+        <img src="img/portada.jpg" alt="Ilustración en acuarela de un coche de bebé rosado entre flores" class="blend"
+             onerror="this.parentNode.innerHTML='<div class=&quot;arch-fallback&quot;><span style=&quot;font-size:5rem&quot;>🎀</span></div>'">
+      </div>
+    </div>
+
+    <p class="tagline reveal">Un pedacito de cielo viene en camino y queremos compartir contigo esta dulce espera</p>
+
+    <div class="date-line reveal" aria-label="Domingo 15 de noviembre de 2026">
+      <div class="side">Domingo</div>
+      <div class="mid"><div class="big">15</div><small>2026</small></div>
+      <div class="side">Noviembre</div>
+    </div>
+  </header>
+
+  <!-- ====== FRASE ====== -->
+  <div class="quote reveal">
+    <div class="orn"><i></i><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.5-9.3C1 8.2 3.2 4.5 6.8 4.5c2.1 0 3.6 1.2 5.2 3 1.6-1.8 3.1-3 5.2-3 3.6 0 5.8 3.7 4.3 7.2C19.5 16.4 12 21 12 21z"/></svg><i></i></div>
+    <p>“Antes de verte ya te amábamos; antes de tenerte en brazos, ya eras nuestro mundo.”</p>
+    <small>Ximena &amp; Daniel</small>
+  </div>
+
+  <!-- ====== CONTADOR ====== -->
+  <section class="card reveal" id="contador">
+    <img class="flor blend" src="img/ramo.jpg" alt="" onerror="this.remove()">
+    <div class="kicker">Cuenta regresiva</div>
+    <h2>Falta muy poquito</h2>
+    <div class="orn"><i></i><svg viewBox="0 0 24 24"><path d="M12 2l2.4 6.9H22l-6 4.4 2.3 7L12 16l-6.3 4.3 2.3-7-6-4.4h7.6z"/></svg><i></i></div>
+    <div class="count" id="count" role="timer">
+      <div class="unit" data-max="100"><svg viewBox="0 0 100 100"><circle class="trk" cx="50" cy="50" r="46"/><circle class="bar" cx="50" cy="50" r="46"/></svg><b id="d">--</b><small>Días</small></div>
+      <div class="unit" data-max="24"><svg viewBox="0 0 100 100"><circle class="trk" cx="50" cy="50" r="46"/><circle class="bar" cx="50" cy="50" r="46"/></svg><b id="h">--</b><small>Horas</small></div>
+      <div class="unit" data-max="60"><svg viewBox="0 0 100 100"><circle class="trk" cx="50" cy="50" r="46"/><circle class="bar" cx="50" cy="50" r="46"/></svg><b id="m">--</b><small>Min</small></div>
+      <div class="unit" data-max="60"><svg viewBox="0 0 100 100"><circle class="trk" cx="50" cy="50" r="46"/><circle class="bar" cx="50" cy="50" r="46"/></svg><b id="s">--</b><small>Seg</small></div>
+    </div>
+  </section>
+
+  <!-- ====== DETALLES ====== -->
+  <section class="card reveal" id="detalles">
+    <img class="flor r blend" src="img/ramo.jpg" alt="" onerror="this.remove()">
+    <div class="kicker">Te esperamos</div>
+    <h2>Cuándo y dónde</h2>
+    <div class="orn"><i></i><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.5-9.3C1 8.2 3.2 4.5 6.8 4.5c2.1 0 3.6 1.2 5.2 3 1.6-1.8 3.1-3 5.2-3 3.6 0 5.8 3.7 4.3 7.2C19.5 16.4 12 21 12 21z"/></svg><i></i></div>
+    <div class="details">
+      <div class="detail">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+        <div class="k">Fecha</div><div class="v">Domingo 15 de noviembre, 2026</div>
+      </div>
+      <div class="detail">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <div class="k">Hora</div><div class="v" id="horaTxt">3:00 p. m.</div>
+      </div>
+      <div class="detail">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div>
+        <div class="k">Lugar</div><div class="v">Salón Social<br>Conjunto Ceiba Grande</div>
+      </div>
+    </div>
+    <div class="btns">
+      <a class="btn" href="https://maps.app.goo.gl/G5NZXgBed1FaaayZ6" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        Cómo llegar
+      </a>
+      <a class="btn ghost" id="calBtn" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M12 13v5M9.5 15.5h5"/></svg>
+        Agendar
+      </a>
+    </div>
+  </section>
+
+  <!-- ====== REGALOS ====== -->
+  <section class="card reveal" id="regalos">
+    <img class="flor blend" src="img/ramo.jpg" alt="" onerror="this.remove()">
+    <svg class="gift" viewBox="0 0 100 90" aria-hidden="true">
+      <rect x="18" y="38" width="64" height="46" rx="5" fill="#f7d6cb"/>
+      <rect x="12" y="27" width="76" height="17" rx="5" fill="#f2bfcd"/>
+      <rect x="45" y="27" width="10" height="57" fill="#d98aa3"/>
+      <path d="M50,27 C38,6 18,12 27,25 C31,30 44,29 50,27 Z" fill="#eaa9bc"/>
+      <path d="M50,27 C62,6 82,12 73,25 C69,30 56,29 50,27 Z" fill="#e39ab0"/>
+      <circle cx="50" cy="27" r="5" fill="#c47590"/>
+    </svg>
+    <div class="kicker">Con cariño</div>
+    <h2>Mesa de regalos</h2>
+    <p class="lead">Tu compañía es nuestro mejor regalo. Si deseas tener un detalle con Celeste, preparamos una lista con mucho amor.</p>
+    <a class="btn full" href="https://www.amazon.com/baby-reg/ximena-carmona-daniel-vargas-enero-2027-pereira/307KGFYQH9AOY?ref_=cm_sw_r_cp_ud_dp_G02ETBJQB4XHY95WWGG6" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12M12 9C10 5 6 5 7 8s5 1 5 1zM12 9c2-4 6-4 5-1s-5 1-5 1z"/></svg>
+      Ver lista en Amazon
+    </a>
+  </section>
+
+  <!-- ====== CONFIRMACIÓN ====== -->
+  <section class="card reveal" id="confirmar">
+    <img class="flor r blend" src="img/ramo.jpg" alt="" onerror="this.remove()">
+    <div class="kicker">R.S.V.P.</div>
+    <h2>Confirma tu asistencia</h2>
+    <p class="lead">Nos encantará saber si nos acompañas. Al enviar, se abrirá WhatsApp con tu mensaje listo.</p>
+    <form id="rsvp" novalidate>
+      <div>
+        <label class="t" for="nombre">Tu nombre</label>
+        <input id="nombre" name="nombre" type="text" autocomplete="name" placeholder="Ej. María López" required>
+      </div>
+      <div>
+        <span class="t" style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;padding-left:6px">¿Nos acompañas?</span>
+        <div class="choice">
+          <input type="radio" id="si" name="asiste" value="si" checked><label for="si">¡Sí, allá estaré! 💗</label>
+          <input type="radio" id="no" name="asiste" value="no"><label for="no">No podré ir</label>
+        </div>
+      </div>
+      <div id="grupoPersonas">
+        <label class="t" for="personas">¿Cuántas personas asisten?</label>
+        <select id="personas" name="personas">
+          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+        </select>
+      </div>
+      <div>
+        <label class="t" for="mensaje">Un mensaje para Celeste (opcional)</label>
+        <textarea id="mensaje" name="mensaje" placeholder="Unas palabras bonitas…"></textarea>
+      </div>
+      <div class="err" id="err" role="alert"></div>
+      <button class="btn full" type="submit">
+        <svg viewBox="0 0 24 24"><path d="M20.5 3.5 3 10.5l7 2.5 2.5 7z"/><path d="M10 13l10.5-9.5"/></svg>
+        Enviar por WhatsApp
+      </button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="msg reveal">
+    <div class="script">Con amor,</div>
+    <div class="names">Ximena &amp; Daniel</div>
+    <div class="due">Esperando a Celeste · enero 2027</div>
+  </div>
+  <img class="meadow blend" src="img/flores.jpg" alt="" onerror="this.remove()">
+</footer>
+
+<script>
+  /* ====== CONFIGURACIÓN (edite aquí) ====== */
+  const EVENTO = {
+    inicio: '2026-11-15T15:00:00-05:00',  // fecha y hora de inicio (hora Colombia)
+    horas: 3,                             // duración para el calendario
+    whatsapp: '573206339581',             // 57 + número, sin espacios
+    lugar: 'Salón Social Conjunto Ceiba Grande, Pereira',
+    mapa: 'https://maps.app.goo.gl/G5NZXgBed1FaaayZ6'
+  };
+  const $ = id => document.getElementById(id);
+
+  /* ====== SOBRE ====== */
+  const env = $('envelope'), intro = $('intro');
+  function abrir(){
+    if (env.classList.contains('open')) return;
+    env.classList.add('open');
+    setTimeout(() => { intro.classList.add('gone'); document.body.classList.remove('locked'); revealHero(); }, 1900);
+    setTimeout(() => intro.remove(), 3000);
+  }
+  env.addEventListener('click', abrir);
+  env.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' '){ e.preventDefault(); abrir(); } });
+
+  /* ====== PÉTALOS ====== */
+  (function(){
+    const box = $('petals'), cols = ['#f2b6c8','#eea3b9','#f7cdb9','#e8c6ee','#f9d9e2'];
+    for (let i=0;i<16;i++){
+      const p = document.createElement('span'); p.className = 'petal';
+      const s = 8 + Math.random()*9;
+      p.style.cssText = `left:${Math.random()*100}%;width:${s}px;height:${s*1.15}px;background:${cols[i%cols.length]};animation-duration:${11+Math.random()*10}s;animation-delay:${-Math.random()*18}s`;
+      box.appendChild(p);
+    }
+  })();
+
+  /* ====== CONTADOR CON ANILLOS ====== */
+  const objetivo = new Date(EVENTO.inicio).getTime();
+  const C = 2*Math.PI*46;
+  const units = [...document.querySelectorAll('.unit')];
+  units.forEach(u => { const b = u.querySelector('.bar'); b.style.strokeDasharray = C; b.style.strokeDashoffset = C; });
+  const pad = n => String(n).padStart(2,'0');
+  function ring(i, val){ const u = units[i], max = +u.dataset.max; u.querySelector('.bar').style.strokeDashoffset = C * (1 - Math.min(val,max)/max); }
+  function tick(){
+    const diff = objetivo - Date.now();
+    if (diff <= 0){ $('count').outerHTML = '<p class="count-done">¡Hoy es el gran día!</p>'; clearInterval(timer); return; }
+    const d = Math.floor(diff/864e5), h = Math.floor(diff/36e5)%24, m = Math.floor(diff/6e4)%60, s = Math.floor(diff/1e3)%60;
+    $('d').textContent = d; $('h').textContent = pad(h); $('m').textContent = pad(m); $('s').textContent = pad(s);
+    ring(0,d); ring(1,h); ring(2,m); ring(3,s);
+  }
+  const timer = setInterval(tick,1000); tick();
+
+  /* ====== AGENDAR (Google Calendar) ====== */
+  (function(){
+    const ini = new Date(EVENTO.inicio), fin = new Date(ini.getTime() + EVENTO.horas*36e5);
+    const f = d => d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
+    $('calBtn').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+      + '&text=' + encodeURIComponent('Baby Shower de Celeste 🎀')
+      + '&dates=' + f(ini) + '/' + f(fin)
+      + '&location=' + encodeURIComponent(EVENTO.lugar)
+      + '&details=' + encodeURIComponent('¡Te esperamos! Ubicación: ' + EVENTO.mapa);
+  })();
+
+  /* ====== CONFIRMACIÓN POR WHATSAPP ====== */
+  const form = $('rsvp');
+  form.addEventListener('change', () => $('grupoPersonas').classList.toggle('hidden', form.asiste.value === 'no'));
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const nombre = form.nombre.value.trim();
+    if (!nombre){ $('err').textContent = 'Por favor escribe tu nombre 💕'; form.nombre.focus(); return; }
+    $('err').textContent = '';
+    const msg = form.mensaje.value.trim();
+    let texto;
+    if (form.asiste.value === 'si'){
+      const p = form.personas.value;
+      texto = `¡Hola! 🎀 Confirmo mi asistencia al Baby Shower de Celeste.\n\n👤 Nombre: ${nombre}\n👨‍👩‍👧 Asistentes: ${p} ${p==='1'?'persona':'personas'}`;
+    } else {
+      texto = `¡Hola! 🎀 Soy ${nombre}. Lamento no poder asistir al Baby Shower de Celeste, pero les envío todo mi cariño.`;
+    }
+    if (msg) texto += `\n\n💌 Mensaje: ${msg}`;
+    window.open(`https://wa.me/${EVENTO.whatsapp}?text=${encodeURIComponent(texto)}`, '_blank');
+  });
+
+  /* ====== APARICIÓN ====== */
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }), {threshold:.12});
+  function revealHero(){ document.querySelectorAll('.reveal').forEach(el => io.observe(el)); }
+</script>
+</body>
+</html>
