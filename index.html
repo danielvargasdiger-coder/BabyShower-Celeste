@@ -11,10 +11,18 @@
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#f8e3e8">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎀</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/great-vibes-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+  @font-face{font-family:'Great Vibes';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/great-vibes-latin-400-normal.woff2) format('woff2')}
+  @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/cormorant-garamond-latin-400-normal.woff2) format('woff2')}
+  @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/cormorant-garamond-latin-500-normal.woff2) format('woff2')}
+  @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/cormorant-garamond-latin-600-normal.woff2) format('woff2')}
+  @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/cormorant-garamond-latin-400-italic.woff2) format('woff2')}
+  @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-display:swap;src:url(fonts/cormorant-garamond-latin-500-italic.woff2) format('woff2')}
+  @font-face{font-family:'Quicksand';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/quicksand-latin-400-normal.woff2) format('woff2')}
+  @font-face{font-family:'Quicksand';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/quicksand-latin-500-normal.woff2) format('woff2')}
+  @font-face{font-family:'Quicksand';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/quicksand-latin-600-normal.woff2) format('woff2')}
   :root{
     --paper:#fdfaf3;
     --blush:#f8e3e8;
@@ -28,10 +36,12 @@
     --muted:#a78893;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;overflow-x:hidden;-webkit-text-size-adjust:100%}
+  @supports (overflow:clip){html,body{overflow-x:clip}}
   body{
     font-family:'Quicksand',system-ui,sans-serif;color:var(--text);
-    background:var(--paper);overflow-x:hidden;-webkit-font-smoothing:antialiased;
+    background:var(--paper);overflow-x:hidden;position:relative;-webkit-font-smoothing:antialiased;
+    font-variant-numeric:lining-nums;-webkit-tap-highlight-color:transparent;
   }
   body.locked{overflow:hidden;height:100vh}
   img{display:block;max-width:100%}
@@ -48,7 +58,7 @@
   #intro .corner{position:absolute;width:min(62vw,300px);opacity:.95}
   #intro .corner.tl{top:-10px;left:-10px}
   #intro .corner.br{bottom:-10px;right:-10px;transform:rotate(180deg)}
-  .intro-top{font-family:'Cormorant Garamond',serif;letter-spacing:.35em;text-transform:uppercase;font-size:.8rem;color:var(--rose-deep);position:relative}
+  .intro-top{font-family:'Cormorant Garamond',serif;letter-spacing:.22em;text-transform:uppercase;font-size:clamp(.72rem,3.3vw,.85rem);max-width:300px;line-height:1.6;color:var(--rose-deep);position:relative}
   .intro-top b{display:block;font-family:'Great Vibes',cursive;font-weight:400;letter-spacing:0;text-transform:none;font-size:2.4rem;color:var(--rose-ink);margin-top:6px}
 
   .envelope{position:relative;width:min(84vw,330px);aspect-ratio:3/2;perspective:900px;cursor:pointer}
@@ -104,11 +114,11 @@
   main{position:relative;max-width:560px;margin:0 auto;padding:0 18px}
 
   /* ============ HERO ============ */
-  .hero{position:relative;text-align:center;padding:78px 0 40px;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center}
-  .hero .corner{position:absolute;width:min(46vw,230px);top:-12px;pointer-events:none}
-  .hero .corner.l{left:-40px}
-  .hero .corner.r{right:-40px;transform:scaleX(-1)}
-  .eyebrow{font-family:'Cormorant Garamond',serif;font-size:.85rem;letter-spacing:.42em;text-transform:uppercase;color:var(--rose-deep);position:relative;z-index:1}
+  .hero{position:relative;text-align:center;padding:clamp(118px,36vw,170px) 0 40px;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+  .hero .corner{position:absolute;width:min(40vw,220px);top:-8px;pointer-events:none}
+  .hero .corner.l{left:-18px}
+  .hero .corner.r{right:-18px;transform:scaleX(-1)}
+  .eyebrow{font-family:'Cormorant Garamond',serif;font-size:clamp(.74rem,3.4vw,.9rem);letter-spacing:.3em;text-transform:uppercase;color:var(--rose-deep);position:relative;z-index:1}
   .title-bs{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(2.3rem,10vw,3.2rem);letter-spacing:.18em;text-transform:uppercase;color:var(--rose-ink);line-height:1.05;margin-top:10px;position:relative;z-index:1}
   .de{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);font-size:1.2rem;margin:2px 0 -10px;position:relative;z-index:1}
   .name{font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(5rem,26vw,8rem);color:var(--rose-deep);line-height:1.05;position:relative;z-index:1;
@@ -163,7 +173,7 @@
   .unit svg circle{fill:none;stroke-width:2.2}
   .unit .trk{stroke:var(--blush-2)}
   .unit .bar{stroke:var(--rose-deep);stroke-linecap:round;transition:stroke-dashoffset .6s ease}
-  .unit b{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(1.6rem,7.5vw,2.3rem);color:var(--rose-ink);line-height:1;font-variant-numeric:tabular-nums;position:relative}
+  .unit b{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(1.6rem,7.5vw,2.3rem);color:var(--rose-ink);line-height:1;font-variant-numeric:tabular-nums lining-nums;position:relative}
   .unit small{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:3px;position:relative}
   .count-done{font-family:'Great Vibes',cursive;font-size:2.4rem;color:var(--rose-deep)}
 
@@ -237,6 +247,35 @@
   .corner,.card .flor{-webkit-mask-image:radial-gradient(circle at 0 0,#000 45%,transparent 72%);mask-image:radial-gradient(circle at 0 0,#000 45%,transparent 72%)}
   footer .meadow{-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 35%);mask-image:linear-gradient(to bottom,transparent 0%,#000 35%)}
   .arch-in img{-webkit-mask-image:radial-gradient(ellipse 62% 62% at 50% 52%,#000 70%,transparent 100%);mask-image:radial-gradient(ellipse 62% 62% at 50% 52%,#000 70%,transparent 100%)}
+
+  /* ===== ajustes celular ===== */
+  .surname{font-family:'Cormorant Garamond',serif;font-size:clamp(.95rem,4.4vw,1.2rem);letter-spacing:.34em;text-transform:uppercase;color:var(--rose-ink);margin-top:-2px;position:relative;z-index:1}
+  .count-date{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--text);margin:-4px 0 18px;position:relative}
+  .card .kicker{line-height:1.6}
+  input[type=text],textarea{font-size:16px}
+  @media (max-width:420px){
+    main{padding:0 14px}
+    .hero .corner.l{left:-14px}
+    .hero .corner.r{right:-14px}
+    section.card{padding:40px 16px 28px;border-radius:26px}
+    .card .flor{width:92px}
+    .card h2{font-size:2.35rem}
+    .card p.lead{font-size:1.1rem}
+    .count{gap:6px}
+    .unit small{font-size:.52rem;letter-spacing:.1em}
+    .date-line{gap:10px}
+    .date-line .side{min-width:0;flex:1;font-size:.78rem;letter-spacing:.22em}
+    .date-line .big{font-size:3.1rem}
+    .detail .v{font-size:1.25rem}
+    .quote p{font-size:1.3rem}
+    .title-bs{letter-spacing:.14em}
+    .envelope{width:min(86vw,330px)}
+    #intro .corner{width:min(56vw,260px)}
+  }
+  @media (max-height:640px){
+    .hero{padding-top:110px}
+    .arch{width:min(70vw,300px)}
+  }
 </style>
 </head>
 <body class="locked">
@@ -269,6 +308,7 @@
     <div class="title-bs reveal">Baby Shower</div>
     <div class="de reveal">de</div>
     <h1 class="name reveal">Celeste</h1>
+    <div class="surname reveal">Vargas Carmona</div>
 
     <div class="arch reveal">
       <div class="arch-in">
@@ -296,8 +336,9 @@
   <!-- ====== CONTADOR ====== -->
   <section class="card reveal" id="contador">
     <img class="flor blend" src="img/ramo.jpg" alt="" onerror="this.remove()">
-    <div class="kicker">Cuenta regresiva</div>
+    <div class="kicker">Para el Baby Shower</div>
     <h2>Falta muy poquito</h2>
+    <p class="count-date">Domingo 15 de noviembre · <span class="horaEv">3:00 p. m.</span></p>
     <div class="orn"><i></i><svg viewBox="0 0 24 24"><path d="M12 2l2.4 6.9H22l-6 4.4 2.3 7L12 16l-6.3 4.3 2.3-7-6-4.4h7.6z"/></svg><i></i></div>
     <div class="count" id="count" role="timer">
       <div class="unit" data-max="100"><svg viewBox="0 0 100 100"><circle class="trk" cx="50" cy="50" r="46"/><circle class="bar" cx="50" cy="50" r="46"/></svg><b id="d">--</b><small>Días</small></div>
@@ -373,15 +414,9 @@
       <div>
         <span class="t" style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;padding-left:6px">¿Nos acompañas?</span>
         <div class="choice">
-          <input type="radio" id="si" name="asiste" value="si" checked><label for="si">¡Sí, allá estaré! 💗</label>
+          <input type="radio" id="si" name="asiste" value="si" checked><label for="si">Sí, asistiré 💗</label>
           <input type="radio" id="no" name="asiste" value="no"><label for="no">No podré ir</label>
         </div>
-      </div>
-      <div id="grupoPersonas">
-        <label class="t" for="personas">¿Cuántas personas asisten?</label>
-        <select id="personas" name="personas">
-          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
-        </select>
       </div>
       <div>
         <label class="t" for="mensaje">Un mensaje para Celeste (opcional)</label>
@@ -400,7 +435,7 @@
   <div class="msg reveal">
     <div class="script">Con amor,</div>
     <div class="names">Ximena &amp; Daniel</div>
-    <div class="due">Esperando a Celeste · enero 2027</div>
+    <div class="due">Papás de Celeste Vargas Carmona</div>
   </div>
   <img class="meadow blend" src="img/flores.jpg" alt="" onerror="this.remove()">
 </footer>
@@ -467,7 +502,6 @@
 
   /* ====== CONFIRMACIÓN POR WHATSAPP ====== */
   const form = $('rsvp');
-  form.addEventListener('change', () => $('grupoPersonas').classList.toggle('hidden', form.asiste.value === 'no'));
   form.addEventListener('submit', e => {
     e.preventDefault();
     const nombre = form.nombre.value.trim();
@@ -476,13 +510,14 @@
     const msg = form.mensaje.value.trim();
     let texto;
     if (form.asiste.value === 'si'){
-      const p = form.personas.value;
-      texto = `¡Hola! 🎀 Confirmo mi asistencia al Baby Shower de Celeste.\n\n👤 Nombre: ${nombre}\n👨‍👩‍👧 Asistentes: ${p} ${p==='1'?'persona':'personas'}`;
+      texto = `¡Hola! 🎀 Soy ${nombre} y confirmo mi asistencia al Baby Shower de Celeste el domingo 15 de noviembre.`;
     } else {
       texto = `¡Hola! 🎀 Soy ${nombre}. Lamento no poder asistir al Baby Shower de Celeste, pero les envío todo mi cariño.`;
     }
     if (msg) texto += `\n\n💌 Mensaje: ${msg}`;
-    window.open(`https://wa.me/${EVENTO.whatsapp}?text=${encodeURIComponent(texto)}`, '_blank');
+    const url = `https://wa.me/${EVENTO.whatsapp}?text=${encodeURIComponent(texto)}`;
+    const w = window.open(url, '_blank');
+    if (!w) location.href = url;
   });
 
   /* ====== APARICIÓN ====== */
