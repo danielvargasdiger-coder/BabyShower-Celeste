@@ -79,15 +79,13 @@
   }
   .flap::before{content:"";position:absolute;inset:0;background:#e9adbe;clip-path:polygon(0 0,100% 0,50% 100%);border-radius:10px 10px 0 0}
   .seal{
-    position:absolute;left:50%;top:62%;transform:translate(-50%,-50%);z-index:4;width:66px;height:66px;border-radius:50%;
-    background:radial-gradient(circle at 35% 30%,#dc93a9,#b8627e 70%);display:grid;place-items:center;
-    box-shadow:0 4px 10px rgba(120,50,75,.35), inset 0 0 0 5px rgba(255,255,255,.15);
-    font-family:'Great Vibes',cursive;font-size:2.2rem;color:#fbe7ec;transition:transform .4s ease, opacity .4s ease;
-    animation:pulse 2.4s ease-in-out infinite;
+    position:absolute;left:50%;top:62%;transform:translate(-50%,-50%);z-index:4;width:74px;height:74px;
+    filter:drop-shadow(0 4px 6px rgba(120,50,75,.35));transition:transform .4s ease, opacity .4s ease;
   }
-  .seal::after{content:"";position:absolute;inset:6px;border-radius:50%;border:1px dashed rgba(255,235,240,.6)}
-  @keyframes pulse{0%,100%{box-shadow:0 4px 10px rgba(120,50,75,.35),0 0 0 0 rgba(196,117,144,.45)}50%{box-shadow:0 4px 10px rgba(120,50,75,.35),0 0 0 14px rgba(196,117,144,0)}}
-  .envelope.open .seal{transform:translate(-50%,-50%) scale(.2);opacity:0;animation:none}
+  .seal svg{display:block;width:100%;height:100%;position:relative}
+  .seal::before{content:"";position:absolute;inset:4px;border-radius:50%;animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(196,117,144,.45)}50%{box-shadow:0 0 0 14px rgba(196,117,144,0)}}
+  .envelope.open .seal{transform:translate(-50%,-50%) scale(.2);opacity:0}
   .envelope.open .flap{transform:rotateX(180deg);z-index:0}
   .envelope.open .letter{transform:translateY(-48%)}
   .tap{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--rose-deep);font-size:1.1rem;position:relative}
@@ -239,7 +237,7 @@
   @media (prefers-reduced-motion:reduce){
     .reveal{opacity:1;transform:none;transition:none}
     .petals{display:none}
-    .seal{animation:none}
+    .seal::before{animation:none}
     html{scroll-behavior:auto}
   }
 
@@ -290,7 +288,19 @@
     <div class="letter"><small>Baby Shower</small><span>Celeste</span></div>
     <div class="env-front"></div>
     <div class="flap"></div>
-    <div class="seal">C</div>
+    <div class="seal" aria-hidden="true"><svg viewBox="0 0 100 100">
+      <defs>
+        <radialGradient id="wax" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#e3a1b4"/><stop offset=".55" stop-color="#c9738f"/><stop offset="1" stop-color="#a9566f"/></radialGradient>
+        <radialGradient id="waxIn" cx="60%" cy="65%" r="70%"><stop offset="0" stop-color="#c46f8b"/><stop offset="1" stop-color="#b35f7b"/></radialGradient>
+      </defs>
+      <path d="M97.50,50.00 Q97.50,50.00 96.03,55.09 Q94.57,60.17 93.64,65.37 Q92.72,70.57 89.59,74.83 Q86.47,79.08 82.89,82.92 Q79.32,86.76 74.73,89.30 Q70.15,91.84 65.26,93.64 Q60.37,95.43 55.18,96.18 Q50.00,96.93 44.96,95.56 Q39.91,94.19 34.57,93.66 Q29.23,93.13 25.45,89.33 Q21.67,85.52 18.05,81.95 Q14.42,78.37 10.66,74.57 Q6.89,70.76 5.04,65.72 Q3.19,60.68 3.79,55.34 Q4.38,50.00 4.20,44.75 Q4.02,39.51 5.69,34.48 Q7.35,29.46 9.75,24.64 Q12.14,19.81 15.99,16.00 Q19.85,12.19 24.82,10.13 Q29.80,8.06 34.50,5.38 Q39.20,2.70 44.60,3.07 Q50.00,3.44 55.35,3.26 Q60.71,3.09 65.37,5.74 Q70.04,8.39 74.64,10.86 Q79.24,13.34 82.44,17.45 Q85.65,21.57 88.66,25.75 Q91.67,29.93 94.81,34.50 Q97.94,39.06 97.72,44.53 Z" fill="url(#wax)"/>
+      <circle cx="50" cy="50" r="37" fill="url(#waxIn)"/>
+      <circle cx="50" cy="50" r="37" fill="none" stroke="#a24f69" stroke-width="1.6" opacity=".55"/>
+      <circle cx="50" cy="50" r="34" fill="none" stroke="#f6d6df" stroke-width=".8" stroke-dasharray="1.6 2.2" opacity=".75"/>
+      <path d="M421 636Q456 636 488.5 632.5Q521 629 549.5 622.5Q578 616 601 605Q609 601 611.5 597.0Q614 593 615 582L627 450Q627 447 622.0 446.0Q617 445 615 449Q589 530 538.0 573.5Q487 617 410 617Q336 617 279.0 580.5Q222 544 190.0 476.5Q158 409 158 316Q158 248 177.5 191.0Q197 134 232.5 93.0Q268 52 315.0 29.5Q362 7 418 7Q493 7 541.0 46.0Q589 85 625 168Q626 171 631.0 170.0Q636 169 636 167L623 48Q622 36 619.5 32.5Q617 29 609 25Q560 5 513.0 -3.5Q466 -12 417 -12Q310 -12 227.0 28.5Q144 69 96.5 142.5Q49 216 49 311Q49 383 77.0 443.0Q105 503 155.5 546.0Q206 589 274.0 612.5Q342 636 421 636Z" transform="translate(0 1.2) translate(49.2 50) scale(0.06173 -0.06173) translate(-342.5 -312)" fill="#8f4560" opacity=".55"/>
+      <path d="M421 636Q456 636 488.5 632.5Q521 629 549.5 622.5Q578 616 601 605Q609 601 611.5 597.0Q614 593 615 582L627 450Q627 447 622.0 446.0Q617 445 615 449Q589 530 538.0 573.5Q487 617 410 617Q336 617 279.0 580.5Q222 544 190.0 476.5Q158 409 158 316Q158 248 177.5 191.0Q197 134 232.5 93.0Q268 52 315.0 29.5Q362 7 418 7Q493 7 541.0 46.0Q589 85 625 168Q626 171 631.0 170.0Q636 169 636 167L623 48Q622 36 619.5 32.5Q617 29 609 25Q560 5 513.0 -3.5Q466 -12 417 -12Q310 -12 227.0 28.5Q144 69 96.5 142.5Q49 216 49 311Q49 383 77.0 443.0Q105 503 155.5 546.0Q206 589 274.0 612.5Q342 636 421 636Z" transform="translate(49.2 50) scale(0.06173 -0.06173) translate(-342.5 -312)" fill="#fbe8ee"/>
+      <ellipse cx="36" cy="30" rx="10" ry="5" fill="#fff" opacity=".18" transform="rotate(-30 36 30)"/>
+    </svg></div>
   </div>
   <div class="tap">Toca el sello para abrir</div>
 </div>
