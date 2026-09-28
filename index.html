@@ -428,6 +428,12 @@
           <input type="radio" id="no" name="asiste" value="no"><label for="no">No podré ir</label>
         </div>
       </div>
+      <div id="grupoPersonas">
+        <label class="t" for="personas">¿Cuántas personas asisten? (máx. 3)</label>
+        <select id="personas" name="personas">
+          <option>1</option><option>2</option><option>3</option>
+        </select>
+      </div>
       <div>
         <label class="t" for="mensaje">Un mensaje para Celeste (opcional)</label>
         <textarea id="mensaje" name="mensaje" placeholder="Unas palabras bonitas…"></textarea>
@@ -512,6 +518,7 @@
 
   /* ====== CONFIRMACIÓN POR WHATSAPP ====== */
   const form = $('rsvp');
+  form.addEventListener('change', () => $('grupoPersonas').classList.toggle('hidden', form.asiste.value === 'no'));
   form.addEventListener('submit', e => {
     e.preventDefault();
     const nombre = form.nombre.value.trim();
@@ -520,7 +527,8 @@
     const msg = form.mensaje.value.trim();
     let texto;
     if (form.asiste.value === 'si'){
-      texto = `¡Hola! 🎀 Soy ${nombre} y confirmo mi asistencia al Baby Shower de Celeste el domingo 15 de noviembre.`;
+      const p = form.personas.value;
+      texto = `¡Hola! 🎀 Soy ${nombre} y confirmo mi asistencia al Baby Shower de Celeste el domingo 15 de noviembre.\n👨‍👩‍👧 Asistimos: ${p} ${p==='1'?'persona':'personas'}`;
     } else {
       texto = `¡Hola! 🎀 Soy ${nombre}. Lamento no poder asistir al Baby Shower de Celeste, pero les envío todo mi cariño.`;
     }
